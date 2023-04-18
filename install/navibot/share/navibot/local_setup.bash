@@ -1,0 +1,1 @@
+/home/dew8/Desktop/NaviGator/build/navibot/ament_cmake_environment_hooks/local_setup.bash

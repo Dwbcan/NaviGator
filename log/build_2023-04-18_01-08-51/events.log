@@ -1,0 +1,151 @@
+[0.000000] (-) TimerEvent: {}
+[0.001877] (navibot) JobQueued: {'identifier': 'navibot', 'dependencies': OrderedDict()}
+[0.001989] (navibot) JobStarted: {'identifier': 'navibot'}
+[0.099972] (-) TimerEvent: {}
+[0.101179] (navibot) JobProgress: {'identifier': 'navibot', 'progress': 'cmake'}
+[0.102055] (navibot) Command: {'cmd': ['/usr/bin/cmake', '/home/dew8/Desktop/NaviGator/src/navibot', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/dew8/Desktop/NaviGator/install/navibot'], 'cwd': '/home/dew8/Desktop/NaviGator/build/navibot', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'dew8'), ('SSH_AGENT_PID', '1656'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/dew8'), ('OLDPWD', '/home/dew8/Desktop/NaviGator/src/navibot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1471'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'dew8'), ('JOURNAL_STREAM', '8:56604'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'dew8'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/1712,unix/ubuntu:/tmp/.ICE-unix/1712'), ('INVOCATION_ID', '1cf008e9b482484ba9d4452f4c34b347'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/f3821711_ff16_43f0_b226_abe0012a428a'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.194'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/dew8/Desktop/NaviGator/build/navibot'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.200310] (-) TimerEvent: {}
+[0.301389] (-) TimerEvent: {}
+[0.402613] (-) TimerEvent: {}
+[0.503795] (-) TimerEvent: {}
+[0.604648] (-) TimerEvent: {}
+[0.705706] (-) TimerEvent: {}
+[0.806672] (-) TimerEvent: {}
+[0.907299] (-) TimerEvent: {}
+[1.007855] (-) TimerEvent: {}
+[1.108425] (-) TimerEvent: {}
+[1.209357] (-) TimerEvent: {}
+[1.310279] (-) TimerEvent: {}
+[1.411543] (-) TimerEvent: {}
+[1.512551] (-) TimerEvent: {}
+[1.613740] (-) TimerEvent: {}
+[1.714704] (-) TimerEvent: {}
+[1.815550] (-) TimerEvent: {}
+[1.916528] (-) TimerEvent: {}
+[2.034315] (-) TimerEvent: {}
+[2.135481] (-) TimerEvent: {}
+[2.237024] (-) TimerEvent: {}
+[2.337793] (-) TimerEvent: {}
+[2.438925] (-) TimerEvent: {}
+[2.539785] (-) TimerEvent: {}
+[2.640623] (-) TimerEvent: {}
+[2.741639] (-) TimerEvent: {}
+[2.842517] (-) TimerEvent: {}
+[2.943645] (-) TimerEvent: {}
+[3.044636] (-) TimerEvent: {}
+[3.145389] (-) TimerEvent: {}
+[3.246200] (-) TimerEvent: {}
+[3.346843] (-) TimerEvent: {}
+[3.447534] (-) TimerEvent: {}
+[3.452280] (navibot) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[3.547804] (-) TimerEvent: {}
+[3.648945] (-) TimerEvent: {}
+[3.749684] (-) TimerEvent: {}
+[3.850418] (-) TimerEvent: {}
+[3.951252] (-) TimerEvent: {}
+[4.052578] (-) TimerEvent: {}
+[4.153477] (-) TimerEvent: {}
+[4.254364] (-) TimerEvent: {}
+[4.355405] (-) TimerEvent: {}
+[4.456456] (-) TimerEvent: {}
+[4.557441] (-) TimerEvent: {}
+[4.658621] (-) TimerEvent: {}
+[4.759478] (-) TimerEvent: {}
+[4.860649] (-) TimerEvent: {}
+[4.961479] (-) TimerEvent: {}
+[5.062654] (-) TimerEvent: {}
+[5.163671] (-) TimerEvent: {}
+[5.264475] (-) TimerEvent: {}
+[5.341623] (navibot) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[5.364960] (-) TimerEvent: {}
+[5.465580] (-) TimerEvent: {}
+[5.517701] (navibot) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[5.566002] (-) TimerEvent: {}
+[5.666981] (-) TimerEvent: {}
+[5.767597] (-) TimerEvent: {}
+[5.857712] (navibot) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[5.862950] (navibot) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[5.868163] (-) TimerEvent: {}
+[5.969527] (-) TimerEvent: {}
+[6.070353] (-) TimerEvent: {}
+[6.098196] (navibot) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[6.137132] (navibot) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[6.170558] (-) TimerEvent: {}
+[6.175156] (navibot) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[6.214939] (navibot) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[6.271184] (-) TimerEvent: {}
+[6.372402] (-) TimerEvent: {}
+[6.438051] (navibot) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[6.441171] (navibot) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[6.472781] (-) TimerEvent: {}
+[6.574154] (-) TimerEvent: {}
+[6.675364] (-) TimerEvent: {}
+[6.676065] (navibot) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[6.695244] (navibot) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[6.696618] (navibot) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[6.775753] (-) TimerEvent: {}
+[6.876561] (-) TimerEvent: {}
+[6.896792] (navibot) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[6.987754] (-) TimerEvent: {}
+[7.072377] (navibot) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[7.073250] (navibot) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[7.088236] (-) TimerEvent: {}
+[7.189116] (-) TimerEvent: {}
+[7.289985] (-) TimerEvent: {}
+[7.390750] (-) TimerEvent: {}
+[7.474367] (navibot) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[7.491274] (-) TimerEvent: {}
+[7.592383] (-) TimerEvent: {}
+[7.693126] (-) TimerEvent: {}
+[7.697402] (navibot) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[7.793749] (-) TimerEvent: {}
+[7.894442] (-) TimerEvent: {}
+[7.995435] (-) TimerEvent: {}
+[8.011967] (navibot) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[8.022415] (navibot) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[8.025724] (navibot) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[8.030184] (navibot) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257\n"}
+[8.035835] (navibot) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[8.057173] (navibot) StdoutLine: {'line': b'-- Configuring done\n'}
+[8.062810] (navibot) StdoutLine: {'line': b'-- Generating done\n'}
+[8.065165] (navibot) StdoutLine: {'line': b'-- Build files have been written to: /home/dew8/Desktop/NaviGator/build/navibot\n'}
+[8.077149] (navibot) CommandEnded: {'returncode': 0}
+[8.079363] (navibot) JobProgress: {'identifier': 'navibot', 'progress': 'build'}
+[8.085092] (navibot) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/dew8/Desktop/NaviGator/build/navibot', '--', '-j4', '-l4'], 'cwd': '/home/dew8/Desktop/NaviGator/build/navibot', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'dew8'), ('SSH_AGENT_PID', '1656'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/dew8'), ('OLDPWD', '/home/dew8/Desktop/NaviGator/src/navibot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1471'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'dew8'), ('JOURNAL_STREAM', '8:56604'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'dew8'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/1712,unix/ubuntu:/tmp/.ICE-unix/1712'), ('INVOCATION_ID', '1cf008e9b482484ba9d4452f4c34b347'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/f3821711_ff16_43f0_b226_abe0012a428a'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.194'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/dew8/Desktop/NaviGator/build/navibot'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[8.095891] (-) TimerEvent: {}
+[8.196907] (-) TimerEvent: {}
+[8.205346] (navibot) CommandEnded: {'returncode': 0}
+[8.267242] (navibot) JobProgress: {'identifier': 'navibot', 'progress': 'install'}
+[8.299225] (navibot) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/dew8/Desktop/NaviGator/build/navibot'], 'cwd': '/home/dew8/Desktop/NaviGator/build/navibot', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'dew8'), ('SSH_AGENT_PID', '1656'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/dew8'), ('OLDPWD', '/home/dew8/Desktop/NaviGator/src/navibot'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1471'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'dew8'), ('JOURNAL_STREAM', '8:56604'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'dew8'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/1712,unix/ubuntu:/tmp/.ICE-unix/1712'), ('INVOCATION_ID', '1cf008e9b482484ba9d4452f4c34b347'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/f3821711_ff16_43f0_b226_abe0012a428a'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.194'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/dew8/Desktop/NaviGator/build/navibot'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[8.303522] (-) TimerEvent: {}
+[8.321977] (navibot) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[8.323103] (navibot) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[8.325123] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/config/empty.yaml\n'}
+[8.390647] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/description/robot.urdf.xacro\n'}
+[8.403917] (-) TimerEvent: {}
+[8.414111] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/launch/rsp.launch.py\n'}
+[8.438521] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/worlds/empty.world\n'}
+[8.462482] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/ament_index/resource_index/package_run_dependencies/navibot\n'}
+[8.487012] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/ament_index/resource_index/parent_prefix_path/navibot\n'}
+[8.504222] (-) TimerEvent: {}
+[8.510286] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/environment/ament_prefix_path.sh\n'}
+[8.533675] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/environment/ament_prefix_path.dsv\n'}
+[8.557561] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/environment/path.sh\n'}
+[8.580097] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/environment/path.dsv\n'}
+[8.604705] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/local_setup.bash\n'}
+[8.605812] (-) TimerEvent: {}
+[8.630893] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/local_setup.sh\n'}
+[8.654890] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/local_setup.zsh\n'}
+[8.678581] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/local_setup.dsv\n'}
+[8.702980] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/package.dsv\n'}
+[8.706445] (-) TimerEvent: {}
+[8.726849] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/ament_index/resource_index/packages/navibot\n'}
+[8.750874] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/cmake/navibotConfig.cmake\n'}
+[8.773848] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/cmake/navibotConfig-version.cmake\n'}
+[8.796641] (navibot) StdoutLine: {'line': b'-- Symlinking: /home/dew8/Desktop/NaviGator/install/navibot/share/navibot/package.xml\n'}
+[8.806706] (-) TimerEvent: {}
+[8.824170] (navibot) CommandEnded: {'returncode': 0}
+[8.907537] (-) TimerEvent: {}
+[9.008300] (-) TimerEvent: {}
+[9.057800] (navibot) JobEnded: {'identifier': 'navibot', 'rc': 0}
+[9.059298] (-) EventReactorShutdown: {}
