@@ -1,9 +1,0 @@
-/home/dew8/Desktop/NaviGator/build/navibot/CMakeFiles/install/strip.dir
-/home/dew8/Desktop/NaviGator/build/navibot/CMakeFiles/install/local.dir
-/home/dew8/Desktop/NaviGator/build/navibot/CMakeFiles/install.dir
-/home/dew8/Desktop/NaviGator/build/navibot/CMakeFiles/list_install_components.dir
-/home/dew8/Desktop/NaviGator/build/navibot/CMakeFiles/rebuild_cache.dir
-/home/dew8/Desktop/NaviGator/build/navibot/CMakeFiles/edit_cache.dir
-/home/dew8/Desktop/NaviGator/build/navibot/CMakeFiles/test.dir
-/home/dew8/Desktop/NaviGator/build/navibot/CMakeFiles/navibot_uninstall.dir
-/home/dew8/Desktop/NaviGator/build/navibot/CMakeFiles/uninstall.dir

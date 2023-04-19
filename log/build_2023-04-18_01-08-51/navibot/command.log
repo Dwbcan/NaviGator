@@ -1,6 +1,0 @@
-Invoking command in '/home/dew8/Desktop/NaviGator/build/navibot': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/dew8/Desktop/NaviGator/src/navibot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/dew8/Desktop/NaviGator/install/navibot
-Invoked command in '/home/dew8/Desktop/NaviGator/build/navibot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/dew8/Desktop/NaviGator/src/navibot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/dew8/Desktop/NaviGator/install/navibot
-Invoking command in '/home/dew8/Desktop/NaviGator/build/navibot': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/dew8/Desktop/NaviGator/build/navibot -- -j4 -l4
-Invoked command in '/home/dew8/Desktop/NaviGator/build/navibot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/dew8/Desktop/NaviGator/build/navibot -- -j4 -l4
-Invoking command in '/home/dew8/Desktop/NaviGator/build/navibot': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/dew8/Desktop/NaviGator/build/navibot
-Invoked command in '/home/dew8/Desktop/NaviGator/build/navibot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/dew8/Desktop/NaviGator/build/navibot
