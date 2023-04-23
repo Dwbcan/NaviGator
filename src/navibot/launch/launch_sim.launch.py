@@ -8,7 +8,8 @@ from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from launch_ros.actions import Node
-
+from launch.actions import RegisterEventHandler
+from launch.event_handlers import OnProcessExit
 
 
 def generate_launch_description():
@@ -47,6 +48,15 @@ def generate_launch_description():
         arguments=["diff_cont"],
     )
 
+
+    delayed_diff_drive_spawner = RegisterEventHandler(
+        event_handler=OnProcessExit(
+        target_action=spawn_entity,
+        on_exit=[diff_drive_spawner],
+        )
+    )
+
+
     joint_broad_spawner = Node(
         package="controller_manager",
         executable="spawner.py",
@@ -74,6 +84,6 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
-        diff_drive_spawner,
+        delayed_diff_drive_spawner,
         joint_broad_spawner
     ])
