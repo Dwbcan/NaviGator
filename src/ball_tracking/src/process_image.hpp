@@ -104,3 +104,32 @@ cv::KeyPoint normalise_keypoint(cv::Mat cv_image, cv::KeyPoint kp) {
     float size = kp.size/cv_image.cols;
     return cv::KeyPoint(x, y, size);
 }
+
+
+
+
+
+/*
+This function creates a tuning window with multiple trackbars to adjust the values of different parameters for image processing.
+The function takes an input map containing initial values for each trackbar.
+The window is named "Tuning", and each trackbar is named with a string corresponding to the parameter it represents.
+The function creates each trackbar with the specified initial value, maximum value, and a no-op function.
+*/
+void create_tuning_window(std::map<std::string, int> initial_values) {
+    // Create a window with the name "Tuning"
+    cv::namedWindow("Tuning", 0);
+
+    // Create trackbars with their names, window name, initial value, maximum value, and a no_op function
+    cv::createTrackbar("x_min", "Tuning", &(initial_values["x_min"]), 100, no_op);
+    cv::createTrackbar("x_max", "Tuning", &(initial_values["x_max"]), 100, no_op);
+    cv::createTrackbar("y_min", "Tuning", &(initial_values["y_min"]), 100, no_op);
+    cv::createTrackbar("y_max", "Tuning", &(initial_values["y_max"]), 100, no_op);
+    cv::createTrackbar("h_min", "Tuning", &(initial_values["h_min"]), 180, no_op);
+    cv::createTrackbar("h_max", "Tuning", &(initial_values["h_max"]), 180, no_op);
+    cv::createTrackbar("s_min", "Tuning", &(initial_values["s_min"]), 255, no_op);
+    cv::createTrackbar("s_max", "Tuning", &(initial_values["s_max"]), 255, no_op);
+    cv::createTrackbar("v_min", "Tuning", &(initial_values["v_min"]), 255, no_op);
+    cv::createTrackbar("v_max", "Tuning", &(initial_values["v_max"]), 255, no_op);
+    cv::createTrackbar("sz_min", "Tuning", &(initial_values["sz_min"]), 100, no_op);
+    cv::createTrackbar("sz_max", "Tuning", &(initial_values["sz_max"]), 100, no_op);
+}
