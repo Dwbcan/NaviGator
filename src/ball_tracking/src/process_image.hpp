@@ -55,3 +55,52 @@ cv::Mat draw_window2(cv::Mat image,         // Input image
     // Return the updated image
     return image;
 }
+
+
+
+
+
+/*
+This function converts a rectangle defined in percentage coordinates to pixel coordinates based on the dimensions of an input image.
+The input rectangle is defined as a vector of four floats representing percentages of the image dimensions from left, top, right, and bottom.
+The function first calculates the pixel coordinates of the rectangle by multiplying the percentage coordinates by the image dimensions.
+Then, it returns the pixel coordinates of the rectangle.
+*/
+std::vector<int> convert_rect_perc_to_pixels(std::vector<float> rect_perc, cv::Mat image) {
+    
+    int rows = image.rows; // Get the number of rows in the image
+    int cols = image.cols; // Get the number of columns in the image
+
+    std::vector<int> scale = {cols, rows, cols, rows}; // Create a vector containing the scale for each rectangle coordinate
+
+    std::vector<int> rect_px(4); // Create a vector to hold the pixel coordinates of the rectangle
+
+    // Convert each percentage coordinate to pixels
+    for(int i = 0; i < 4; i++) {
+        rect_px[i] = static_cast<int>(rect_perc[i]*scale[i]/100);
+    }
+    
+    return rect_px; // Return the pixel coordinates of the rectangle
+}
+
+
+
+
+
+/* 
+This function takes an input OpenCV image and a keypoint and returns a new keypoint with normalized coordinates and size.
+The keypoint's x and y coordinates are normalized to the center of the image, such that the center of the image corresponds to (0,0) and the edges of the image correspond to (-1,-1) and (1,1) respectively.
+The size of the keypoint is normalized by dividing it by the width of the image.
+The function returns the normalized keypoint.
+*/
+cv::KeyPoint normalise_keypoint(cv::Mat cv_image, cv::KeyPoint kp) {
+    float rows = static_cast<float>(cv_image.rows);
+    float cols = static_cast<float>(cv_image.cols);
+    float center_x = 0.5*cols;
+    float center_y = 0.5*rows;
+    float x = (kp.pt.x - center_x)/(center_x);
+    float y = (kp.pt.y - center_y)/(center_y);
+    // Size of the keypoint is normalized by dividing it by the width of the image
+    float size = kp.size/cv_image.cols;
+    return cv::KeyPoint(x, y, size);
+}
