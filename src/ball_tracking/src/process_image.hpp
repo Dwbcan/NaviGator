@@ -93,7 +93,7 @@ The keypoint's x and y coordinates are normalized to the center of the image, su
 The size of the keypoint is normalized by dividing it by the width of the image.
 The function returns the normalized keypoint.
 */
-cv::KeyPoint normalise_keypoint(cv::Mat cv_image, cv::KeyPoint kp) {
+cv::KeyPoint normalize_keypoint(cv::Mat cv_image, cv::KeyPoint kp) {
     float rows = static_cast<float>(cv_image.rows);
     float cols = static_cast<float>(cv_image.cols);
     float center_x = 0.5*cols;
@@ -103,6 +103,15 @@ cv::KeyPoint normalise_keypoint(cv::Mat cv_image, cv::KeyPoint kp) {
     // Size of the keypoint is normalized by dividing it by the width of the image
     float size = kp.size/cv_image.cols;
     return cv::KeyPoint(x, y, size);
+}
+
+
+
+
+
+// Define a no-op function to use as a callback for OpenCV trackbars
+void no_op(int x) {
+    // Do nothing
 }
 
 
@@ -132,4 +141,36 @@ void create_tuning_window(std::map<std::string, int> initial_values) {
     cv::createTrackbar("v_max", "Tuning", &(initial_values["v_max"]), 255, no_op);
     cv::createTrackbar("sz_min", "Tuning", &(initial_values["sz_min"]), 100, no_op);
     cv::createTrackbar("sz_max", "Tuning", &(initial_values["sz_max"]), 100, no_op);
+}
+
+
+
+
+
+/*
+This function retrieves the current values of trackbars created in a tuning window.
+The trackbar names are stored in a vector called "trackbar_names", and the tuning window is named "Tuning".
+The function creates an empty map called "tuning_params" to store the trackbar values.
+It then iterates through each trackbar name in the "trackbar_names" vector, retrieves the current value of the trackbar using OpenCV's "getTrackbarPos" function, and stores the value in the "tuning_params" map with the corresponding trackbar name as the key.
+The function then returns the "tuning_params" map containing the current values of each trackbar.
+*/
+std::map<std::string, int> get_tuning_params() {
+    // Define the names of the trackbars to read from
+    std::vector<std::string> trackbar_names = {"x_min", "x_max", "y_min", "y_max", "h_min", "h_max", "s_min", "s_max", "v_min", "v_max", "sz_min", "sz_max"};
+
+    // Define a map to store the trackbar values
+    std::map<std::string, int> tuning_params;
+
+    // Read the current value of each trackbar and store it in the map
+    for (const auto& name : trackbar_names) {
+        tuning_params[name] = cv::getTrackbarPos(name, "Tuning");
+    }
+
+    // Return the map of trackbar values
+    return tuning_params;
+}
+
+// Define a function to wait for a short period of time, allowing GUI events to be processed
+void wait_on_gui() {
+    cv::waitKey(2);
 }
