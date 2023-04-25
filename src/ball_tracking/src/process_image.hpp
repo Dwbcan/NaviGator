@@ -7,6 +7,57 @@
 
 
 
+cv::Mat find_circles(cv::Mat image, std::map<std::string, int> tuning_params) {
+
+    int blur = 5;
+
+    int x_min = tuning_params["x_min"];
+    int x_max = tuning_params["x_max"];
+    int y_min = tuning_params["y_min"];
+    int y_max = tuning_params["y_max"];
+    
+    std::vector<int> search_window {x_min, y_min, x_max, y_max};
+
+    cv::Mat working_image = cv::blur(image, cv::Size(blur, blur));
+
+
+    // Search window
+    if (search_window.empty()) {
+        search_window = {0, 0, 1, 1};
+    }
+    std::vector<int> search_window_px = convert_rect_perc_to_pixels(search_window, image);
+
+
+    // Convert image from BGR to HSV
+    cv::cvtColor(working_image, working_image, cv::COLOR_BGR2HSV);
+
+    // Apply HSV threshold to create binary mask (where pixels outside HSV thresholds are colored black and pixels within HSV thresholds are colored white)
+    cv::Scalar thresh_min(tuning_params["h_min"], tuning_params["s_min"], tuning_params["v_min"]);
+    cv::Scalar thresh_max(tuning_params["h_max"], tuning_params["s_max"], tuning_params["v_max"]);
+    cv::inRange(working_image, thresh_min, thresh_max, working_image);
+
+
+    // Dilate and Erode
+    cv::dilate(working_image, working_image, cv::Mat(), cv::Point(-1,-1), 2);
+    cv::erode(working_image, working_image, cv::Mat(), cv::Point(-1,-1), 2);
+
+
+    // Make a copy of the image for tuning
+    cv::Mat tuning_image = cv::Mat::zeros(image.size(), CV_8UC3);
+    cv::bitwise_and(image, image, tuning_image, working_image);
+
+
+    // Apply the search window
+    working_image = apply_search_window(working_image, search_window_px);
+
+
+    return working_image;
+}
+
+
+
+
+
 /*
 This function takes an input image and a window and applies the window to the image, returning the masked image.
 The window is defined as a vector of four floats representing percentages of the image dimensions from left, top, right, and bottom.
