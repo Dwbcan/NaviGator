@@ -51,6 +51,39 @@ cv::Mat find_circles(cv::Mat image, std::map<std::string, int> tuning_params) {
     working_image = apply_search_window(working_image, search_window_px);
 
 
+    // Invert the image to suit the blob detector
+    working_image = 255 - working_image;
+
+
+
+    // Initialize parameters for SimpleBlobDetector
+    cv::SimpleBlobDetector::Params params;
+        
+    // Change thresholds
+    params.minThreshold = 0;
+    params.maxThreshold = 100;
+        
+    // Filter by Area.
+    params.filterByArea = true;
+    params.minArea = 30;
+    params.maxArea = 20000;
+        
+    // Filter by Circularity
+    params.filterByCircularity = true;
+    params.minCircularity = 0.1;
+        
+    // Filter by Convexity
+    params.filterByConvexity = true;
+    params.minConvexity = 0.5;
+        
+    // Filter by Inertia
+    params.filterByInertia = true;
+    params.minInertiaRatio = 0.5;
+
+    // Create a SimpleBlobDetector with the specified parameters
+    cv::Ptr<cv::SimpleBlobDetector> detector = cv::SimpleBlobDetector::create(params);
+
+
     return working_image;
 }
 
