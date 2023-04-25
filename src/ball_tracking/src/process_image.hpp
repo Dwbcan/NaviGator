@@ -7,7 +7,7 @@
 
 
 
-cv::Mat find_circles(cv::Mat image, std::map<std::string, int> tuning_params) {
+std::tuple<std::vector<cv::KeyPoint>, cv::Mat, cv::Mat> find_circles(cv::Mat image, std::map<std::string, int> tuning_params) {
 
     int blur = 5;
 
@@ -84,7 +84,42 @@ cv::Mat find_circles(cv::Mat image, std::map<std::string, int> tuning_params) {
     cv::Ptr<cv::SimpleBlobDetector> detector = cv::SimpleBlobDetector::create(params);
 
 
-    return working_image;
+    // Run detection
+    std::vector<cv::KeyPoint> keypoints;
+    detector->detect(working_image, keypoints);
+
+    // Define size limits in pixels
+    float size_min_px = tuning_params["sz_min"] * working_image.cols / 100.0;
+    float size_max_px = tuning_params["sz_max"] * working_image.cols / 100.0;
+
+    // Remove keypoints smaller or larger than specified sizes
+    for (auto it = keypoints.begin(); it != keypoints.end();) {
+        if (it->size < size_min_px || it->size > size_max_px) {
+            it = keypoints.erase(it);
+        } else {
+            it++;
+        }
+    }
+
+    // Set up main output image
+    cv::Scalar line_color(0, 0, 255);
+    cv::Mat output_image;
+    cv::drawKeypoints(image, keypoints, output_image, line_color, cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+    output_image = draw_window2(output_image, search_window_px);
+
+    // Set up tuning output image
+    cv::Mat tuning_image;
+    cv::drawKeypoints(tuning_image, keypoints, tuning_image, line_color, cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+    tuning_image = draw_window2(tuning_image, search_window_px);
+
+    // Normalize keypoints based on the size of the image
+    std::vector<cv::KeyPoint> keypoints_normalized;
+    for (auto k : keypoints) {
+        keypoints_normalized.push_back(normalize_keypoint(working_image, k));
+    }
+
+
+    return std::make_tuple(keypoints_normalised, output_image, tuning_image);
 }
 
 
