@@ -175,11 +175,9 @@ std::map<std::string, int> get_tuning_params() {
 
 
 /*
-This function takes in an input image and the tuning parameters to perform object detection on the image
-The trackbar names are stored in a vector called "trackbar_names", and the tuning window is named "Tuning".
-The function creates an empty map called "tuning_params" to store the trackbar values.
-It then iterates through each trackbar name in the "trackbar_names" vector, retrieves the current value of the trackbar using OpenCV's "getTrackbarPos" function, and stores the value in the "tuning_params" map with the corresponding trackbar name as the key.
-The function then returns the "tuning_params" map containing the current values of each trackbar.
+This function takes in an input image and the tuning parameters and uses OpenCV functions to perform object detection on the image.
+The function performs object detection using an OpenCV SimpleBlobDetector.
+The function then returns a tuple containing the detected keypoints, the output image, and the tuning image.
 */
 std::tuple<std::vector<cv::KeyPoint>, cv::Mat, cv::Mat> find_circles(cv::Mat image, std::map<std::string, int> tuning_params) {
 
