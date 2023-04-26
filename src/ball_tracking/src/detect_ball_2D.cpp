@@ -26,8 +26,54 @@ class DetectBall : public rclcpp::Node
             // Create publisher to publish tuning image
             image_tuning_pub_ = this->create_publisher<sensor_msgs::msg::Image>("/image_tuning", 1);
             
-            // Create publisher to publish normalized centre point of detected ball 
+            // Create publisher to publish normalized centre point of detected ball
             ball_pub_ = this->create_publisher<geometry_msgs::msg::Point>("/detected_ball", 1);
+
+            // Declare parameters
+            this->declare_parameter("x_min", 0);
+            this->declare_parameter("x_max", 0);
+            this->declare_parameter("y_min", 0);
+            this->declare_parameter("y_max", 0);
+            this->declare_parameter("h_min", 0);
+            this->declare_parameter("h_max", 0);
+            this->declare_parameter("s_min", 0);
+            this->declare_parameter("s_max", 0);
+            this->declare_parameter("v_min", 0);
+            this->declare_parameter("v_max", 0);
+            this->declare_parameter("sz_min", 0);
+            this->declare_parameter("sz_max", 0);
+
+            auto x_min = this->get_parameter("x_min").as_int();
+            auto x_max = this->get_parameter("x_max").as_int();
+            auto y_min = this->get_parameter("y_min").as_int();
+            auto y_max = this->get_parameter("y_max").as_int();
+            auto h_min = this->get_parameter("h_min").as_int();
+            auto h_max = this->get_parameter("h_max").as_int();
+            auto s_min = this->get_parameter("s_min").as_int();
+            auto s_max = this->get_parameter("s_max").as_int();
+            auto v_min = this->get_parameter("v_min").as_int();
+            auto v_max = this->get_parameter("v_max").as_int();
+            auto sz_min = this->get_parameter("sz_min").as_int();
+            auto sz_max = this->get_parameter("sz_max").as_int();
+
+            std::map<std::string, int> tuning_params = {
+                {"x_min", x_min},
+                {"x_max", x_max},
+                {"y_min", y_min},
+                {"y_max", y_max},
+                {"h_min", h_min},
+                {"h_max", h_max},
+                {"s_min", s_min},
+                {"s_max", s_max},
+                {"v_min", v_min},
+                {"v_max", v_max},
+                {"sz_min", sz_min},
+                {"sz_max", sz_max}
+            };
+
+            cv_bridge::CvImage cv_ptr;
+
+            create_tuning_window(tuning_params);
         }
 
     private:
