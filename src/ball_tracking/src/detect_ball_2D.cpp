@@ -23,9 +23,6 @@ class DetectBall : public rclcpp::Node
             // Create publisher to publish output image
             image_output_pub_ = this->create_publisher<sensor_msgs::msg::Image>("/image_out", 1);
             
-            // Create publisher to publish tuning image
-            image_tuning_pub_ = this->create_publisher<sensor_msgs::msg::Image>("/image_tuning", 1);
-            
             // Create publisher to publish normalized centre point of detected ball
             ball_pub_ = this->create_publisher<geometry_msgs::msg::Point>("/detected_ball", 1);
 
@@ -72,16 +69,65 @@ class DetectBall : public rclcpp::Node
             };
 
             cv_bridge::CvImage cv_ptr;
-
-            create_tuning_window(tuning_params);
         }
 
     private:
+        void callback(const sensor_msgs::msg::Image::SharedPtr data)
+        {
+            // Convert the ROS2 image message to OpenCV format using cv_bridge
+            cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(data, "bgr8");
+            cv::Mat cv_image = cv_ptr->image;
+
+
+            // Detect circles in the image using the tuning parameters
+            cv::Mat output_image, tuning_image;
+            std::vector<cv::KeyPoint> keypoints_norm;
+            std::tie(keypoints_norm, output_image, tuning_image) = find_circles(cv_image, this->tuning_params);
+
+
+            // Convert the output image to ROS2 format and publish it
+            sensor_msgs::msg::Image::SharedPtr img_to_pub = cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", output_image).toImageMsg();
+            img_to_pub->header = data->header;
+            this->image_output_pub_->publish(*img_to_pub);
+
+
+            // Find the largest circle and publish its normalized centre point position as a ROS2 message
+            geometry_msgs::msg::Point point_out;
+            point_out.z = 0.0;
+
+
+            for (size_t i = 0; i < keypoints_norm.size(); ++i)
+            {
+              const auto& kp = keypoints_norm[i];
+              const auto& x = kp.pt.x;
+              const auto& y = kp.pt.y;
+              const auto& s = kp.size;
+
+                // Log the position and size of each circle
+                RCLCPP_INFO(this->get_logger(), "Pt %d: (%f,%f,%f)", i, x, y, s);
+
+                if (s > point_out.z)
+                {
+                  // Update the largest circle's centre point position
+                  point_out.x = x;  // Please note the x value is the normalized x position of the centre point of the circle in terms of the fraction of the image frame it extends across (where the origin 0,0 is the centre of the image frame)
+                  point_out.y = y;  // Please note the y value is the normalized y position of the centre point of the circle in terms of the fraction of the image frame it extends across (where the origin 0,0 is the centre of the image frame)
+                  point_out.z = s;  // Please note the z value is the diameter of the circle in terms of the fraction of the image frame it extends across
+                }
+            }
+
+            // Check if the circle has a valid diameter and if so, publish the normalized position of its centre point
+            if (point_out.z > 0.0)
+            {
+              // Publish the largest circle position as a ROS2 message
+              this->ball_pub_->publish(point_out);
+            }
+        }
+
+
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
         rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_output_pub_;
-        rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_tuning_pub_;
         rclcpp::Publisher<geometry_msgs::msg::Point>::SharedPtr ball_pub_;
-        std::map<std::string, int> tuning_params_;
+        std::map<std::string, int> tuning_params;
 };
 
 int main(int argc, char **argv)
