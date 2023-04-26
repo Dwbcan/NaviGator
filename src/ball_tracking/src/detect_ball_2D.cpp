@@ -130,7 +130,7 @@ class DetectBall : public rclcpp::Node
         std::map<std::string, int> tuning_params;
 };
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
   rclcpp::init(argc, argv);
   auto detect_ball = std::make_shared<DetectBall>();
