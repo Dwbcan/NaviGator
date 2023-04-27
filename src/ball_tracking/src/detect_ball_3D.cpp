@@ -18,6 +18,14 @@ class DetectBall3D : public rclcpp::Node
             ball3D_pub_ = this->create_publisher<geometry_msgs::msg::Point>(
             "/detected_ball_3D",
             1);
+
+            this->declare_parameter("h_fov", 1.089);
+            this->declare_parameter("ball_radius", 0.033);
+            this->declare_parameter("aspect_ratio", 4.0 / 3.0);
+
+            auto h_fov_ = this->get_parameter("h_fov").as_double();
+            auto aspect_ratio_ = this->get_parameter("aspect_ratio").as_double();
+            auto ball_radius_ = this->get_parameter("ball_radius").as_double();
         }
 
     private:
