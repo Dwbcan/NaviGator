@@ -115,9 +115,9 @@ class DetectBall : public rclcpp::Node
                 if(s > point_out.z)
                 {
                   // Update the largest circle's centre point position
-                  point_out.x = x;  // Please note the x value is the normalized x position of the centre point of the circle in terms of the fraction of the image frame it extends across (where the origin 0,0 is the centre of the image frame)
-                  point_out.y = y;  // Please note the y value is the normalized y position of the centre point of the circle in terms of the fraction of the image frame it extends across (where the origin 0,0 is the centre of the image frame)
-                  point_out.z = s;  // Please note the z value is the diameter of the circle in terms of the fraction of the image frame it extends across
+                  point_out.x = x;  // Please note the x value is the normalized x position of the centre point of the circle in terms of the fraction of the 2D image plane it extends across (where the origin 0,0 is the centre of the 2D image plane)
+                  point_out.y = y;  // Please note the y value is the normalized y position of the centre point of the circle in terms of the fraction of the 2D image plane it extends across (where the origin 0,0 is the centre of the 2D image plane)
+                  point_out.z = s;  // Please note the z value is the diameter of the circle in terms of the fraction of the 2D image plane it extends across
                 }
             }
 
