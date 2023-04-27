@@ -5,6 +5,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/image.hpp"
 #include "geometry_msgs/msg/point.hpp"
+#include "geometry_msgs/msg/twist.hpp"
 #include <cv_bridge/cv_bridge.h>
 #include "process_image.hpp"
 
@@ -18,13 +19,16 @@ class DetectBall : public rclcpp::Node
             // Create subscriber to receive RGB camera images from /camera/image_raw topic
             image_sub_ = this->create_subscription<sensor_msgs::msg::Image>("/camera/image_raw",
                                                                             rclcpp::SensorDataQoS(),
-                                                                            std::bind(&DetectBall::callback, this, std::placeholders::_1));
+                                                                            std::bind(&DetectBall::object_detection_callback, this, std::placeholders::_1));
 
             // Create publisher to publish output image
             image_output_pub_ = this->create_publisher<sensor_msgs::msg::Image>("/image_out", 1);
             
             // Create publisher to publish normalized centre point of detected ball
             ball_pub_ = this->create_publisher<geometry_msgs::msg::Point>("/detected_ball", 1);
+
+            // Create publisher to publish velocity commands that spins navibot in a circle until a ball is detected
+            spin_velocity_pub = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
 
             // Declare parameters
             this->declare_parameter("x_min", 0);
@@ -39,6 +43,7 @@ class DetectBall : public rclcpp::Node
             this->declare_parameter("v_max", 0);
             this->declare_parameter("sz_min", 0);
             this->declare_parameter("sz_max", 0);
+            
 
             auto x_min = this->get_parameter("x_min").as_int();
             auto x_max = this->get_parameter("x_max").as_int();
@@ -52,6 +57,7 @@ class DetectBall : public rclcpp::Node
             auto v_max = this->get_parameter("v_max").as_int();
             auto sz_min = this->get_parameter("sz_min").as_int();
             auto sz_max = this->get_parameter("sz_max").as_int();
+ 
 
             std::map<std::string, int> tuning_params = {
                 {"x_min", x_min},
@@ -72,7 +78,7 @@ class DetectBall : public rclcpp::Node
         }
 
     private:
-        void callback(const sensor_msgs::msg::Image::SharedPtr data)
+        void object_detection_callback(const sensor_msgs::msg::Image::SharedPtr data)
         {
             // Convert the ROS2 image message to OpenCV format using cv_bridge
             cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(data, "bgr8");
@@ -96,7 +102,7 @@ class DetectBall : public rclcpp::Node
             point_out.z = 0.0;
 
 
-            for (size_t i = 0; i < keypoints_norm.size(); ++i)
+            for(size_t i = 0; i < keypoints_norm.size(); ++i)
             {
               const auto& kp = keypoints_norm[i];
               const auto& x = kp.pt.x;
@@ -106,7 +112,7 @@ class DetectBall : public rclcpp::Node
                 // Log the position and size of each circle
                 RCLCPP_INFO(this->get_logger(), "Pt %d: (%f,%f,%f)", i, x, y, s);
 
-                if (s > point_out.z)
+                if(s > point_out.z)
                 {
                   // Update the largest circle's centre point position
                   point_out.x = x;  // Please note the x value is the normalized x position of the centre point of the circle in terms of the fraction of the image frame it extends across (where the origin 0,0 is the centre of the image frame)
@@ -116,10 +122,21 @@ class DetectBall : public rclcpp::Node
             }
 
             // Check if the circle has a valid diameter and if so, publish the normalized position of its centre point
-            if (point_out.z > 0.0)
+            if(point_out.z > 0.0)
             {
               // Publish the largest circle position as a ROS2 message
               this->ball_pub_->publish(point_out);
+
+              // Shutdown the node
+              rclcpp::shutdown();
+            }
+
+            // Keep spinning robot until ball is detected
+            else
+            {
+              geometry_msgs::msg::Twist spin_speed;
+              spin_speed.angular.z = 0.6;
+              this->spin_velocity_pub->publish(spin_speed);
             }
         }
 
@@ -127,6 +144,7 @@ class DetectBall : public rclcpp::Node
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
         rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_output_pub_;
         rclcpp::Publisher<geometry_msgs::msg::Point>::SharedPtr ball_pub_;
+        rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr spin_velocity_pub;
         std::map<std::string, int> tuning_params;
 };
 
@@ -134,7 +152,7 @@ int main(int argc, char* argv[])
 {
   rclcpp::init(argc, argv);
   auto detect_ball = std::make_shared<DetectBall>();
-  while (rclcpp::ok())
+  while(rclcpp::ok())
   {
     rclcpp::spin_some(detect_ball);
     wait_on_gui();
