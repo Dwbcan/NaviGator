@@ -3,22 +3,33 @@
 #include "visualization_msgs/msg/marker.hpp"
 #include <cmath>
 
-class DetectBall3d : public rclcpp::Node
+class DetectBall3D : public rclcpp::Node
 {
     public:
-        DetectBall3d() : Node("detect_ball_3d")
+        DetectBall3D() : Node("detect_ball_3D")
         {
+            // Create subscriber to receive normalized position of detected ball's centre point
+            ball2d_sub_ = this->create_subscription<geometry_msgs::msg::Point>(
+            "/detected_ball",
+            10,
+            std::bind(&DetectBall3D::pose_estimation_callback, this, std::placeholders::_1));
 
+            // Create publisher to publish detected ball's 3D pose estimate (the position of the detected ball's centre point in 3D space)
+            ball3D_pub_ = this->create_publisher<geometry_msgs::msg::Point>(
+            "/detected_ball_3D",
+            1);
         }
 
     private:
+        rclcpp::Subscription<geometry_msgs::msg::Point>::SharedPtr ball2d_sub_;
+        rclcpp::Publisher<geometry_msgs::msg::Point>::SharedPtr ball3D_pub_;
 };
 
 int main(int argc, char* argv[])
 {
   rclcpp::init(argc, argv);
-  auto detect_ball_3d = std::make_shared<DetectBall3d>();
-  rclcpp::spin(detect_ball_3d);
+  auto detect_ball_3D = std::make_shared<DetectBall3D>();
+  rclcpp::spin(detect_ball_3D);
   rclcpp::shutdown();
   return 0;
 }
