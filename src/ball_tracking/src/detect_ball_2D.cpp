@@ -126,9 +126,6 @@ class DetectBall : public rclcpp::Node
             {
               // Publish the largest circle position as a ROS2 message
               this->ball_pub_->publish(point_out);
-
-              // Shutdown the node
-              rclcpp::shutdown();
             }
 
             // Keep spinning robot until ball is detected
