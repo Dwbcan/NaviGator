@@ -1,7 +1,8 @@
 #include "rclcpp/rclcpp.hpp"
 #include "nav2_msgs/srv/compute_path_to_pose.hpp"
-#include "nav_msgs/msg/occupancy_grid.hpp"
+#include "nav2_msgs/msg/occupancy_grid.hpp"
 #include "geometry_msgs/msg/point_stamped.hpp"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.h"
 #include <memory>
 
 class PlanPath : public rclcpp::Node
@@ -9,16 +10,26 @@ class PlanPath : public rclcpp::Node
     public:
         PlanPath() : rclcpp::Node("plan_path")
         {
-            costmap_subscriber_ = this->create_subscription<nav_msgs::msg::OccupancyGrid>(
-            "/global_costmap/costmap",
-            rclcpp::QoS(rclcpp::KeepLast(10)),
+            // Create subscriber to receive costmap for A* path planning
+            costmap_sub_ = this->create_subscription<nav2_msgs::msg::OccupancyGrid>(
+            "/global_costmap/costmap", 10),
             std::bind(&PlanPath::costmap_callback, this, std::placeholders::_1));
 
+            // Create subscriber to localize navibot using Adaptive Monte Carlo Localization (AMCL)
+            pose_sub_ = this->create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
+            "/amcl_pose", 10, std::bind(&PlanPath::amcl_callback, this, std::placeholders::_1));
+
+            // Create client to send request to ComputePathToPose service and receive planned path response
             nav2_client_ = this->create_client<nav2_msgs::srv::ComputePathToPose>("compute_path_to_pose");
+
+            // Create publisher to published planned A* path
+            path_pub = this->create_publisher<nav2_msgs::msg::Path>("/planned_path", 10);
         }
     private:
-        rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr costmap_subscriber_;
+        rclcpp::Subscription<nav2_msgs::msg::OccupancyGrid>::SharedPtr costmap_sub_;
+        rclcpp::Subscription<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr pose_sub;
         rclcpp::Client<nav2_msgs::srv::ComputePathToPose>::SharedPtr nav2_client_;
+        rclcpp::Publisher<nav2_msgs::msg::Path>::SharedPtr path_pub;
 };
 
 int main(int argc, char * argv[])
