@@ -28,7 +28,7 @@ class DetectBall : public rclcpp::Node
             ball_pub_ = this->create_publisher<geometry_msgs::msg::Point>("/detected_ball", 1);
 
             // Create publisher to publish velocity commands that spins navibot in a circle until a ball is detected
-            spin_velocity_pub = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+            spin_velocity_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
 
             // Declare parameters
             this->declare_parameter("x_min", 0);
@@ -59,7 +59,7 @@ class DetectBall : public rclcpp::Node
             auto sz_max = this->get_parameter("sz_max").as_int();
  
 
-            std::map<std::string, int> tuning_params = {
+            std::map<std::string, int> tuning_params_ = {
                 {"x_min", x_min},
                 {"x_max", x_max},
                 {"y_min", y_min},
@@ -88,7 +88,7 @@ class DetectBall : public rclcpp::Node
             // Detect circles in the image using the tuning parameters
             cv::Mat output_image, tuning_image;
             std::vector<cv::KeyPoint> keypoints_norm;
-            std::tie(keypoints_norm, output_image, tuning_image) = find_circles(cv_image, this->tuning_params);
+            std::tie(keypoints_norm, output_image, tuning_image) = find_circles(cv_image, this->tuning_params_);
 
 
             // Convert the output image to ROS2 format and publish it
@@ -133,7 +133,7 @@ class DetectBall : public rclcpp::Node
             {
               geometry_msgs::msg::Twist spin_speed;
               spin_speed.angular.z = 0.6;
-              this->spin_velocity_pub->publish(spin_speed);
+              this->spin_velocity_pub_->publish(spin_speed);
             }
         }
 
@@ -141,8 +141,8 @@ class DetectBall : public rclcpp::Node
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
         rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_output_pub_;
         rclcpp::Publisher<geometry_msgs::msg::Point>::SharedPtr ball_pub_;
-        rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr spin_velocity_pub;
-        std::map<std::string, int> tuning_params;
+        rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr spin_velocity_pub_;
+        std::map<std::string, int> tuning_params_;
 };
 
 int main(int argc, char* argv[])
