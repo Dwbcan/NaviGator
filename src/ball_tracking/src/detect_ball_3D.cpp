@@ -1,5 +1,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "geometry_msgs/msg/point.hpp"
+#include "geometry_msgs/msg/point_stamped.hpp"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.h"
 #include <cmath>
 
 class DetectBall3D : public rclcpp::Node
@@ -14,7 +16,7 @@ class DetectBall3D : public rclcpp::Node
             std::bind(&DetectBall3D::pose_estimation_callback, this, std::placeholders::_1));
 
             // Create publisher to publish detected ball's 3D pose estimate (the position of the detected ball's centre point in 3D space)
-            ball3D_pub_ = this->create_publisher<geometry_msgs::msg::Point>(
+            ball3D_pub_ = this->create_publisher<geometry_msgs::msg::PointStamped()>(
             "/detected_ball_3D",
             1);
 
@@ -30,6 +32,23 @@ class DetectBall3D : public rclcpp::Node
     private:
         void pose_estimation_callback(const geometry_msgs::msg::Point::SharedPtr data)
         {
+            // Create a transform listener and point stamped message
+            tf2_ros::Buffer tfBuffer;
+            tf2_ros::TransformListener tfListener(tfBuffer);
+            auto p_stamped = geometry_msgs::msg::PointStamped();
+
+            // Wait for transform from camera_link_optical to map
+            geometry_msgs::msg::TransformStamped transformStamped;
+            try
+            {
+                transformStamped = tfBuffer.lookupTransform("map", "camera_link_optical", rclcpp::Time(0));
+            }
+            catch (tf2::TransformException &exp)
+            {
+                RCLCPP_ERROR(this->get_logger(), "Failed to transform pose: %s", ex.what());
+                return;
+            }
+
             // Calculate horizontal angle the ball's diameter covers on 2D image plane and Euclidean distance to ball's centre point
             double ang_size = data->z * h_fov_;
             double d = ball_radius_ / (tan(ang_size / 2));
@@ -44,17 +63,28 @@ class DetectBall3D : public rclcpp::Node
             double x = d_proj * sin(x_ang);
             double z = d_proj * cos(x_ang);
 
-            auto p = geometry_msgs::msg::Point();
+            // Transform ball's 3D pose estimate from camera_link_optical frame to map frame
+            geometry_msgs::msg::Point p;
             p.x = x;
             p.y = y;
             p.z = z;
 
+            geometry_msgs::msg::Point p_transformed;
+            tf2::doTransform(p, p_transformed, transformStamped);
+
+            // Populate point stamped message
+            p_stamped.header.stamp = rclcpp::Clock().now();
+            p_stamped.header.frame_id = "map";
+            p_stamped.point.x = p_transformed.x;
+            p_stamped.point.y = p_transformed.y;
+            p_stamped.point.z = 0;
+
             // Publish ball's 3D pose estimate
-            ball3D_pub_->publish(p);
+            ball3D_pub_->publish(p_stamped);
         }
         
         rclcpp::Subscription<geometry_msgs::msg::Point>::SharedPtr ball2D_sub_;
-        rclcpp::Publisher<geometry_msgs::msg::Point>::SharedPtr ball3D_pub_;
+        rclcpp::Publisher<geometry_msgs::msg::PointStamped()>::SharedPtr ball3D_pub_;
         double h_fov_;
         double v_fov_;
         double ball_radius_;

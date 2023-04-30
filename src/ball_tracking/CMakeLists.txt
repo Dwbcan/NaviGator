@@ -23,7 +23,7 @@ add_executable(detect_ball_2D src/detect_ball_2D.cpp)
 ament_target_dependencies(detect_ball_2D rclcpp std_msgs sensor_msgs cv_bridge image_transport)
 
 add_executable(detect_ball_3D src/detect_ball_3D.cpp)
-ament_target_dependencies(detect_ball_3D rclcpp std_msgs sensor_msgs cv_bridge image_transport)
+ament_target_dependencies(detect_ball_3D rclcpp std_msgs geometry_msgs tf2_geometry_msgs sensor_msgs cv_bridge image_transport)
 
 add_executable(plan_path src/plan_path.cpp)
 ament_target_dependencies(plan_path rclcpp std_msgs nav2_msgs nav_msgs geometry_msgs)
