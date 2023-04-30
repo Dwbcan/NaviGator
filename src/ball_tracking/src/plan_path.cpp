@@ -26,6 +26,13 @@ class PlanPath : public rclcpp::Node
             path_pub = this->create_publisher<nav2_msgs::msg::Path>("/planned_path", 10);
         }
     private:
+        void amcl_callback(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg)
+        {
+            // Log navibot's current pose
+            RCLCPP_INFO(this->get_logger(), "Received robot pose: x=%f, y=%f, z=%f", msg->pose.pose.position.x,
+                        msg->pose.pose.position.y, msg->pose.pose.position.z);
+        }
+
         rclcpp::Subscription<nav2_msgs::msg::OccupancyGrid>::SharedPtr costmap_sub_;
         rclcpp::Subscription<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr pose_sub;
         rclcpp::Client<nav2_msgs::srv::ComputePathToPose>::SharedPtr nav2_client_;
