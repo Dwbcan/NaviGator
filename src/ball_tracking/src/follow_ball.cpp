@@ -20,6 +20,13 @@ class FollowBall : public rclcpp::Node
         }
 
     private:
+        void amcl_callback(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg)
+        {
+            // Store navibot's current pose as a PoseStamped message
+            robot_pose_.header = msg->header;
+            robot_pose_.pose = msg->pose.pose;
+        }
+
         rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr pose_sub_;
         rclcpp::Subscription<nav_msgs::msg::Path>::SharedPtr path_sub_;
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub_;
