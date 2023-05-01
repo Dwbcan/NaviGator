@@ -16,7 +16,7 @@ class DetectBall3D : public rclcpp::Node
             std::bind(&DetectBall3D::pose_estimation_callback, this, std::placeholders::_1));
 
             // Create publisher to publish detected ball's 3D pose estimate (the position of the detected ball's centre point in 3D space)
-            ball3D_pub_ = this->create_publisher<geometry_msgs::msg::PointStamped()>(
+            ball3D_pub_ = this->create_publisher<geometry_msgs::msg::PointStamped>(
             "/detected_ball_3D",
             1);
 
@@ -35,7 +35,7 @@ class DetectBall3D : public rclcpp::Node
             // Create a transform listener and point stamped message
             tf2_ros::Buffer tfBuffer;
             tf2_ros::TransformListener tfListener(tfBuffer);
-            auto p_stamped = geometry_msgs::msg::PointStamped();
+            geometry_msgs::msg::PointStamped p_stamped;
 
             // Wait for transform from camera_link_optical to map
             geometry_msgs::msg::TransformStamped transformStamped;
@@ -84,7 +84,7 @@ class DetectBall3D : public rclcpp::Node
         }
         
         rclcpp::Subscription<geometry_msgs::msg::Point>::SharedPtr ball2D_sub_;
-        rclcpp::Publisher<geometry_msgs::msg::PointStamped()>::SharedPtr ball3D_pub_;
+        rclcpp::Publisher<geometry_msgs::msg::PointStamped>::SharedPtr ball3D_pub_;
         double h_fov_;
         double v_fov_;
         double ball_radius_;
