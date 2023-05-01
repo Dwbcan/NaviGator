@@ -27,7 +27,7 @@ class PlanPath : public rclcpp::Node
             // Create client to send request to compute_path_to_pose service and receive planned path response
             nav2_client_ = this->create_client<nav2_msgs::srv::ComputePathToPose>("compute_path_to_pose");
 
-            // Create publisher to published planned A* path
+            // Create publisher to publish planned A* path
             path_pub_ = this->create_publisher<nav_msgs::msg::Path>("/planned_path", 10);
         }
     private:
