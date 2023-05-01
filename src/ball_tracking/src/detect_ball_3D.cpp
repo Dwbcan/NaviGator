@@ -43,7 +43,7 @@ class DetectBall3D : public rclcpp::Node
             {
                 transformStamped = tfBuffer.lookupTransform("map", "camera_link_optical", rclcpp::Time(0));
             }
-            catch (tf2::TransformException &exp)
+            catch(tf2::TransformException &exp)
             {
                 RCLCPP_ERROR(this->get_logger(), "Failed to transform pose: %s", ex.what());
                 return;

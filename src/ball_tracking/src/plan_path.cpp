@@ -50,10 +50,11 @@ class PlanPath : public rclcpp::Node
         void costmap_callback(const std::shared_ptr<nav2_msgs::msg::OccupancyGrid> msg)
         {
             // Wait for the compute_path_to_pose service to become available
-            while (!nav2_client_->wait_for_service(std::chrono::seconds(1))) {
-                
+            while(!nav2_client_->wait_for_service(std::chrono::seconds(1)))
+            {
                 // If the service doesn't become available within 1 second, check if the program is still running
-                if (!rclcpp::ok()) {
+                if(!rclcpp::ok())
+                {
                     // If the program has been interrupted, log an error and exit the function
                     RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
                     return;
@@ -81,10 +82,13 @@ class PlanPath : public rclcpp::Node
             auto result = future_result.get();
 
             // Check if the path planning was successful
-            if (result->error_code != result->SUCCESS) {
+            if(result->error_code != result->SUCCESS)
+            {
                 // If the path planning failed, log an error with the error code
                 RCLCPP_ERROR(this->get_logger(), "Failed to plan path: %d", result->error_code);
-            } else {
+            } 
+            else
+            {
                 // If the path planning was successful, log the number of poses in the path
                 RCLCPP_INFO(this->get_logger(), "Planned path with %d poses", result->path.poses.size());
             }
